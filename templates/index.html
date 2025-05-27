@@ -1,19 +1,39 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Ivy Chat</title>
-  <link rel="stylesheet" href="/static/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ivy – Your Chatbot</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="script.js" defer></script>
 </head>
 <body>
-  <div class="chat-container">
-    <div class="chat-box" id="chat-box"></div>
-    <form id="chat-form">
-      <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" />
-      <button type="submit">Send</button>
-    </form>
+  <div class="container">
+    <aside class="left-panel">
+      <img src="ivy-profile.png" alt="Ivy Profile" class="ivy-pic"/>
+      <h1>Ivy</h1>
+      <p class="bio">
+        Hi, I’m Oman — a 19-year-old with a passion for building things that help people. <br><br>
+        I created Ivy because financial advice shouldn’t feel boring or overwhelming. <br><br>
+        Ivy is here to simplify everything — from loans to APR — with Gen Z vibes, clarity, and kindness 💬✨
+      </p>
+      <div id="model-container"></div>
+    </aside>
+
+    <main class="chat-panel">
+      <div id="chat-box">
+        <div class="message ivy">Hey hey! 👋 I’m Ivy. Ask me anything about loans 💸</div>
+      </div>
+      <form id="chat-form">
+        <input type="text" id="chat-input" placeholder="Type here..." autocomplete="off"/>
+      </form>
+      <footer>
+        Contact: <a href="mailto:dilloooman26@gmail.com">dilloooman26@gmail.com</a>
+      </footer>
+    </main>
   </div>
-  <script src="/static/script.js"></script>
+
+  <script type="module" src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/loaders/GLTFLoader.js"></script>
 </body>
 </html>
