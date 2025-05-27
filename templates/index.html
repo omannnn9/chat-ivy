@@ -4,13 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ivy – Your Chatbot</title>
-  <link rel="stylesheet" href="style.css" />
-  <script type="module" src="script.js" defer></script>
+
+  <!-- ✅ Corrected CSS path for Flask -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+  <!-- ✅ Corrected JS path for Flask -->
+  <script type="module" src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
 <body>
   <div class="container">
     <aside class="left-panel">
-      <img src="ivy-profile.png" alt="Ivy Profile" class="ivy-pic"/>
+      <!-- ✅ Corrected image path -->
+      <img src="{{ url_for('static', filename='ivy-profile.png') }}" alt="Ivy Profile" class="ivy-pic"/>
       <h1>Ivy</h1>
       <p class="bio">
         Hi, I’m Oman — a 19-year-old with a passion for building things that help people. <br><br>
@@ -33,6 +38,7 @@
     </main>
   </div>
 
+  <!-- ✅ 3D model + Three.js -->
   <script type="module" src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/loaders/GLTFLoader.js"></script>
 </body>
