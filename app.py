@@ -67,5 +67,8 @@ def chat():
     except Exception as e:
         return jsonify({"reply": "Oops! 🥲 I couldn’t reach my cloud brain. But I can still help with APRs, loans, or EMIs if you ask!"})
 
+import os
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Render sets this
+    app.run(host="0.0.0.0", port=port)
