@@ -40,9 +40,9 @@ body {
 }
 
 #model-container {
-  margin-top: 20px;
   width: 100%;
   height: 300px;
+  margin-top: 20px;
 }
 
 .chat-panel {
