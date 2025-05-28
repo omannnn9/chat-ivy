@@ -47,7 +47,7 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 container.appendChild(renderer.domElement);
 
 const loader = new GLTFLoader();
-loader.load('Robot_Companion_0526160056_texture (1).glb', (gltf) => {
+loader.load('/static/ivy-model.glb', (gltf) => {
   const model = gltf.scene;
   model.scale.set(1.5, 1.5, 1.5);
   scene.add(model);
