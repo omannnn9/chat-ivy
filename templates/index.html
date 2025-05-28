@@ -5,40 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ivy – Your Chatbot</title>
 
-  <!-- ✅ Corrected CSS path for Flask -->
+  <!-- CSS file -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 
-  <!-- ✅ Corrected JS path for Flask -->
+  <!-- JS logic -->
   <script type="module" src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
 <body>
   <div class="container">
     <aside class="left-panel">
-      <!-- ✅ Corrected image path -->
+      <!-- Ivy profile picture -->
       <img src="{{ url_for('static', filename='ivy-profile.png') }}" alt="Ivy Profile" class="ivy-pic"/>
       <h1>Ivy</h1>
+
+      <!-- Bio / About Ivy -->
       <p class="bio">
-        Hi, I’m Oman — a 19-year-old with a passion for building things that help people. <br><br>
-        I created Ivy because financial advice shouldn’t feel boring or overwhelming. <br><br>
-        Ivy is here to simplify everything — from loans to APR — with Gen Z vibes, clarity, and kindness 💬✨
+        This is Ivy — a smart, modern financial assistant designed to make loan-related information accessible, friendly, and easy to understand. Created by Oman, a 19-year-old with a passion for building helpful digital tools, Ivy was born out of the belief that financial knowledge should be simple and approachable for everyone. Whether it's understanding what a loan is, how APR works, or calculating repayments, Ivy is equipped with both real-time AI capabilities and a comprehensive offline knowledge base to provide detailed answers at any time. With a clean interface, dark theme, and smooth experience, Ivy makes financial conversations feel less intimidating and more like a helpful chat. Users can type naturally — even casually — and get clear, accurate responses that are easy to digest. Ivy is designed to be interactive, mobile-friendly, and future-ready, complete with optional 3D visuals and emoji support. Whether online or offline, the goal is always the same: help people learn more about loans and make informed decisions without the stress. Ivy is not just a chatbot — it’s a small step toward better financial literacy for the next generation.
       </p>
+
+      <!-- 3D model -->
       <div id="model-container"></div>
     </aside>
 
     <main class="chat-panel">
+      <!-- Chat messages -->
       <div id="chat-box">
         <div class="message ivy">Hey hey! 👋 I’m Ivy. Ask me anything about loans 💸</div>
       </div>
+
+      <!-- Chat input -->
       <form id="chat-form">
         <input type="text" id="chat-input" placeholder="Type here..." autocomplete="off"/>
       </form>
+
+      <!-- Footer -->
       <footer>
         Contact: <a href="mailto:dilloooman26@gmail.com">dilloooman26@gmail.com</a>
       </footer>
     </main>
   </div>
 
-  <!-- ✅ 3D model + Three.js -->
+  <!-- 3D Model Support -->
   <script type="module" src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/loaders/GLTFLoader.js"></script>
 </body>
