@@ -1,48 +1,39 @@
 from flask import Flask, request, jsonify, render_template
+import openai
+import os
 from dotenv import load_dotenv
-import openai, os, json
 
-app = Flask(__name__)
+# Load API key
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-try:
-    with open("ivy_knowledge_base_genz_expanded.json", "r", encoding="utf-8") as f:
-        ivy_knowledge = json.load(f)
-except:
-    ivy_knowledge = []
+app = Flask(__name__)
 
-def search_offline(user_input):
-    for item in ivy_knowledge:
-        if any(kw.lower() in user_input.lower() for kw in item.get("keywords", [])):
-            return item.get("answer")
-    return "Hmm, I’m not sure about that 🤔 — but I’m learning more every day!"
-
-def get_response(user_input):
-    try:
-        res = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[
-                {"role": "system", "content": "You are Ivy, a smart, friendly loan assistant."},
-                {"role": "user", "content": user_input}
-            ]
-        )
-        return res.choices[0].message.content.strip()
-    except Exception as e:
-        print("OpenAI failed:", e)
-        return search_offline(user_input)
-
+# Render index.html
 @app.route("/")
 def index():
     return render_template("index.html")
 
+# Respond to chat
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
     user_input = data.get("message", "")
-    reply = get_response(user_input)
+
+    # OpenAI fallback if possible
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": "You are Ivy, a friendly and helpful Gen Z financial chatbot who explains everything about loans, APR, EMIs etc."},
+                {"role": "user", "content": user_input}
+            ]
+        )
+        reply = response.choices[0].message.content
+    except Exception as e:
+        reply = "Oops 🥲 I couldn’t reach the AI cloud, but I'm here to help with offline stuff!"
+
     return jsonify({"reply": reply})
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(debug=False, host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
