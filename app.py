@@ -3,10 +3,10 @@ import openai
 import os
 from dotenv import load_dotenv
 
-# Load API key from .env file
+# Load environment variables from .env
 load_dotenv()
 
-# ✅ Use OpenRouter as backend
+# ✅ Set OpenRouter API key and endpoint
 openai.api_key = os.getenv("OPENROUTER_API_KEY")
 openai.api_base = "https://openrouter.ai/api/v1"
 
@@ -22,13 +22,15 @@ def chat():
     user_input = data.get("message", "")
 
     try:
-        # 🔁 Claude 3 Sonnet is the model for Ivy's personality
         response = openai.ChatCompletion.create(
             model="anthropic/claude-3-sonnet",
             messages=[
                 {
                     "role": "system",
-                    "content": "You are Ivy, a Gen Z-style friendly and helpful assistant that explains loans, APR, budgeting, EMIs and other finance topics in simple and fun ways."
+                    "content": (
+                        "You are Ivy — a Gen Z-style AI financial assistant who is friendly, helpful, and explains "
+                        "loans, APR, EMIs, budgeting, and financial concepts in a simple, casual, and fun way. Be clear, supportive, and relatable."
+                    )
                 },
                 {
                     "role": "user",
@@ -36,9 +38,9 @@ def chat():
                 }
             ]
         )
-        reply = response.choices[0].message.content
+        reply = response.choices[0].message.content.strip()
     except Exception as e:
-        print("🔥 AI ERROR:", e)
+        print("🔥 AI ERROR:", repr(e))  # Shows detailed error in Render logs
         reply = "Oops 🥲 I couldn’t reach the AI cloud, but I’m still here to help with offline stuff!"
 
     return jsonify({"reply": reply})
