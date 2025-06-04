@@ -63,18 +63,14 @@ function removeTyping() {
   if (typing) typing.remove();
 }
 
-// ✅ Load 3D model using Three.js and GLTFLoader
+// ✅ Load 3D model using GLTFLoader
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ alpha: true });
 renderer.setSize(250, 250);
 
 const container = document.getElementById("ivy-3d");
-if (container) {
-  container.appendChild(renderer.domElement);
-} else {
-  console.warn("⚠️ #ivy-3d container not found.");
-}
+if (container) container.appendChild(renderer.domElement);
 
 const loader = new THREE.GLTFLoader();
 loader.load(
