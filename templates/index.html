@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Ivy – Chat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 
-  <!-- ✅ Load official GLTFLoader module -->
-  <script type="module" src="{{ url_for('static', filename='GLTFLoader.js') }}"></script>
+  <!-- ✅ Load global Three.js + GLTFLoader -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/examples/js/loaders/GLTFLoader.min.js"></script>
 
-  <!-- Defer main script after GLTFLoader is set up -->
+  <!-- Defer Ivy logic -->
   <script defer src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
