@@ -1,8 +1,9 @@
+console.log("✅ Ivy script loaded");
+
 const form = document.getElementById("chat-form");
 const input = document.getElementById("chat-input");
 const chatBox = document.getElementById("chat-box");
 
-// Submit chat
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const text = input.value.trim();
@@ -29,7 +30,6 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-// Message renderer
 function addMessage(sender, text) {
   const msg = document.createElement("div");
   msg.className = `message ${sender}`;
@@ -61,7 +61,7 @@ function removeTyping() {
   if (typing) typing.remove();
 }
 
-// 3D model rendering
+// 3D model
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js";
 import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/loaders/GLTFLoader.js";
 
