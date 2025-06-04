@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ivy – Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+  <!-- ✅ Three.js & GLTFLoader CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/loaders/GLTFLoader.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -12,9 +16,9 @@
       <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="ivy-pic" alt="Ivy Profile Picture" title="Ivy" />
       <h1>Ivy</h1>
       <p class="bio">
-        This is Ivy — a smart, modern financial assistant designed to make loan-related information accessible, friendly, and easy to understand. Created by Oman, a 19-year-old with a passion for building helpful digital tools, Ivy was born out of the belief that financial knowledge should be simple and approachable for everyone.
+        This is Ivy — a smart, Gen Z-style financial assistant built by Oman, a 19-year-old creator passionate about making finance friendly and fun.
       </p>
-      <div id="model-container"></div>
+      <div id="ivy-3d" class="ivy-3d-container"></div>
     </aside>
 
     <main class="chat-panel">
@@ -26,7 +30,7 @@
       </div>
 
       <form id="chat-form">
-        <input type="text" id="chat-input" placeholder="Type here..." autocomplete="off"/>
+        <input type="text" id="chat-input" placeholder="Type here..." autocomplete="off" />
         <button type="submit" id="send-button">Send</button>
       </form>
 
@@ -36,7 +40,6 @@
     </main>
   </div>
 
-  <!-- Scripts -->
-  <script type="module" src="{{ url_for('static', filename='script.js') }}"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
