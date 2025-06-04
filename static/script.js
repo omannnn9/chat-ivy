@@ -1,5 +1,6 @@
 console.log("✅ Ivy script loaded");
 
+// Chat logic
 const form = document.getElementById("chat-form");
 const input = document.getElementById("chat-input");
 const chatBox = document.getElementById("chat-box");
@@ -11,7 +12,6 @@ form.addEventListener("submit", async (e) => {
 
   addMessage("you", text);
   input.value = "";
-
   addTyping();
 
   try {
@@ -61,3 +61,29 @@ function removeTyping() {
   const typing = document.querySelector(".typing");
   if (typing) typing.remove();
 }
+
+// 3D model loader
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true });
+renderer.setSize(250, 250);
+
+const container = document.getElementById('ivy-3d');
+if (container) container.appendChild(renderer.domElement);
+
+const loader = new THREE.GLTFLoader();
+loader.load('/static/ivy-model.glb', function (gltf) {
+  const model = gltf.scene;
+  scene.add(model);
+  camera.position.z = 2;
+
+  function animate() {
+    requestAnimationFrame(animate);
+    model.rotation.y += 0.01;
+    renderer.render(scene, camera);
+  }
+
+  animate();
+}, undefined, function (error) {
+  console.error('❌ Failed to load model:', error);
+});
