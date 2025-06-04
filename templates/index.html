@@ -6,9 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 
-  <!-- ✅ Load Three.js and local GLTFLoader -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
-  <script src="{{ url_for('static', filename='GLTFLoader.js') }}"></script>
+  <!-- ✅ Load official GLTFLoader module -->
+  <script type="module" src="{{ url_for('static', filename='GLTFLoader.js') }}"></script>
+
+  <!-- Defer main script after GLTFLoader is set up -->
+  <script defer src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
   <div class="container">
@@ -39,7 +41,5 @@
       </footer>
     </main>
   </div>
-
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
