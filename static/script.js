@@ -26,7 +26,7 @@ form.addEventListener("submit", async (e) => {
     addMessage("ivy", data.reply);
   } catch (err) {
     removeTyping();
-    addMessage("ivy", "Oops! Couldn't connect. Try again later.");
+    addMessage("ivy", "Oops! Couldn’t connect. Try again later.");
   }
 });
 
@@ -61,38 +61,3 @@ function removeTyping() {
   const typing = document.querySelector(".typing");
   if (typing) typing.remove();
 }
-
-// ✅ Import three.js and loader via CDN
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
-import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/loaders/GLTFLoader.js';
-
-const container = document.getElementById("model-container");
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(45, container.clientWidth / 300, 0.1, 1000);
-camera.position.set(0, 1.5, 3);
-
-const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-renderer.setSize(container.clientWidth, 300);
-container.appendChild(renderer.domElement);
-
-const light = new THREE.HemisphereLight(0xffffff, 0x444444);
-light.position.set(0, 1, 0);
-scene.add(light);
-
-const loader = new GLTFLoader();
-loader.load("/static/ivy-model.glb", (gltf) => {
-  const model = gltf.scene;
-  model.scale.set(1.5, 1.5, 1.5);
-  model.position.y = -1.2;
-  scene.add(model);
-
-  function animate() {
-    requestAnimationFrame(animate);
-    model.rotation.y += 0.01;
-    renderer.render(scene, camera);
-  }
-
-  animate();
-}, undefined, (err) => {
-  console.error("❌ Failed to load Ivy's 3D model:", err);
-});
