@@ -1,6 +1,6 @@
 console.log("✅ Ivy script loaded");
 
-// Chat logic
+// Chat functionality
 const form = document.getElementById("chat-form");
 const input = document.getElementById("chat-input");
 const chatBox = document.getElementById("chat-box");
@@ -26,6 +26,7 @@ form.addEventListener("submit", async (e) => {
     addMessage("ivy", data.reply);
   } catch (err) {
     removeTyping();
+    console.error("❌ Chat error:", err);
     addMessage("ivy", "Oops! Couldn’t connect. Try again later.");
   }
 });
@@ -62,28 +63,39 @@ function removeTyping() {
   if (typing) typing.remove();
 }
 
-// 3D model loader
+// ✅ Load 3D model using Three.js and GLTFLoader
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ alpha: true });
 renderer.setSize(250, 250);
 
-const container = document.getElementById('ivy-3d');
-if (container) container.appendChild(renderer.domElement);
+const container = document.getElementById("ivy-3d");
+if (container) {
+  container.appendChild(renderer.domElement);
+} else {
+  console.warn("⚠️ #ivy-3d container not found.");
+}
 
 const loader = new THREE.GLTFLoader();
-loader.load('/static/ivy-model.glb', function (gltf) {
-  const model = gltf.scene;
-  scene.add(model);
-  camera.position.z = 2;
+loader.load(
+  "/static/ivy-model.glb",
+  function (gltf) {
+    console.log("✅ 3D model loaded successfully.");
+    const model = gltf.scene;
+    scene.add(model);
+    camera.position.z = 2;
 
-  function animate() {
-    requestAnimationFrame(animate);
-    model.rotation.y += 0.01;
-    renderer.render(scene, camera);
+    function animate() {
+      requestAnimationFrame(animate);
+      model.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  },
+  undefined,
+  function (error) {
+    console.error("❌ Failed to load 3D model:", error);
+    alert("3D model failed to load. See console for details.");
   }
-
-  animate();
-}, undefined, function (error) {
-  console.error('❌ Failed to load model:', error);
-});
+);
