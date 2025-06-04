@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <aside class="left-panel">
-      <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="ivy-pic" />
+      <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="ivy-pic" alt="Ivy Profile Picture" title="Ivy" />
       <h1>Ivy</h1>
       <p class="bio">
         This is Ivy — a Gen Z-style loan assistant built by Oman (19), made to help you understand loans, APR, and everything money with fun, friendly vibes. 🧠💸
@@ -20,7 +20,7 @@
     <main class="chat-panel">
       <div id="chat-box">
         <div class="message ivy">
-          <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="chat-pfp" />
+          <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="chat-pfp" alt="Ivy Avatar" title="Ivy" />
           <span>Hey hey! 👋 I’m Ivy. Ask me anything about loans 💸</span>
         </div>
       </div>
@@ -36,7 +36,7 @@
     </main>
   </div>
 
-  <!-- Scripts (correct order) -->
+  <!-- Scripts -->
   <script type="module" src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/loaders/GLTFLoader.js"></script>
   <script type="module" src="{{ url_for('static', filename='script.js') }}"></script>
