@@ -1,4 +1,4 @@
-/* Global styles */
+/* General layout */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -54,7 +54,7 @@ body {
   color: #ccc;
 }
 
-/* 3D model area */
+/* 3D model container */
 #model-container {
   width: 100%;
   height: 300px;
@@ -95,7 +95,7 @@ canvas {
   border-radius: 3px;
 }
 
-/* Messages */
+/* Message bubbles */
 .message {
   display: flex;
   align-items: flex-start;
@@ -127,7 +127,7 @@ canvas {
   max-width: 80%;
 }
 
-/* Profile pictures in chat */
+/* Profile pictures in messages */
 .chat-pfp {
   width: 32px;
   height: 32px;
@@ -137,13 +137,13 @@ canvas {
   border: 1px solid #fff;
 }
 
-/* Typing animation */
+/* Typing indicator */
 .typing span {
   font-style: italic;
   color: #aaa;
 }
 
-/* Chat input */
+/* Input box */
 #chat-form {
   display: flex;
   align-items: center;
