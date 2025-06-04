@@ -1,192 +1,117 @@
-/* General layout */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
   background-color: #0d0d0d;
-  color: #f0f0f0;
+  color: #fff;
   display: flex;
   justify-content: center;
-  align-items: start;
-  height: 100vh;
-  overflow: hidden;
 }
 
 .container {
   display: flex;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   height: 100vh;
-  border-left: 2px solid #900;
-  border-right: 2px solid #900;
 }
 
-/* Left panel */
 .left-panel {
-  width: 40%;
-  background-color: #000;
-  padding: 30px;
+  width: 300px;
+  background-color: #111;
+  padding: 20px;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-right: 1px solid #222;
 }
 
 .ivy-pic {
-  width: 100px;
-  height: 100px;
-  border-radius: 100px;
-  border: 2px solid #900;
-  object-fit: cover;
-  margin-bottom: 20px;
-}
-
-.left-panel h1 {
-  font-size: 26px;
-  margin-bottom: 15px;
-  color: #fff;
+  width: 100%;
+  border-radius: 10px;
 }
 
 .bio {
-  font-size: 14px;
-  text-align: justify;
-  line-height: 1.5;
-  color: #ccc;
+  font-size: 0.9rem;
+  margin: 15px 0;
+  line-height: 1.4;
 }
 
-/* 3D model container */
-#model-container {
+.ivy-3d-container {
   width: 100%;
-  height: 300px;
-  margin-top: 30px;
-  background-color: transparent;
+  height: 250px;
+  background-color: #111;
+  border-radius: 10px;
+  margin-top: 20px;
 }
 
-canvas {
-  display: block;
-}
-
-/* Right panel */
 .chat-panel {
-  width: 60%;
-  padding: 30px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: #1a1a1a;
-  box-sizing: border-box;
+  padding: 20px;
+  background-color: #181818;
 }
 
-/* Chat box */
 #chat-box {
   flex: 1;
   overflow-y: auto;
-  padding-right: 10px;
-  margin-bottom: 20px;
-  scrollbar-width: thin;
-  scrollbar-color: #900 #1a1a1a;
+  padding-bottom: 20px;
 }
 
-#chat-box::-webkit-scrollbar {
-  width: 6px;
-}
-
-#chat-box::-webkit-scrollbar-thumb {
-  background: #900;
-  border-radius: 3px;
-}
-
-/* Message bubbles */
 .message {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 12px;
-  max-width: 90%;
-}
-
-.message.you {
-  justify-content: flex-end;
+  margin-bottom: 15px;
 }
 
 .message.you span {
-  background-color: #333;
-  color: #f0f0f0;
+  background-color: #444;
   align-self: flex-end;
-  border-radius: 15px 15px 0 15px;
+  margin-left: auto;
 }
 
 .message.ivy span {
-  background-color: #900;
-  color: white;
-  border-radius: 15px 15px 15px 0;
+  background-color: #222;
 }
 
 .message span {
   padding: 10px 14px;
-  font-size: 14px;
-  display: inline-block;
+  border-radius: 20px;
   max-width: 80%;
 }
 
-/* Profile pictures in messages */
 .chat-pfp {
-  width: 32px;
-  height: 32px;
-  margin-right: 8px;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid #fff;
 }
 
-/* Typing indicator */
-.typing span {
-  font-style: italic;
-  color: #aaa;
-}
-
-/* Input box */
-#chat-form {
+form {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  margin-top: 10px;
 }
 
 #chat-input {
   flex: 1;
-  padding: 10px 14px;
-  font-size: 14px;
+  padding: 12px;
   border: none;
-  border-radius: 8px;
-  background-color: #2a2a2a;
+  border-radius: 30px;
+  outline: none;
+  background-color: #333;
   color: #fff;
+  font-size: 1rem;
 }
 
 #send-button {
-  padding: 10px 16px;
-  background-color: #900;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-#send-button:hover {
-  background-color: #b00;
-}
-
-/* Footer */
-footer {
-  margin-top: 15px;
-  font-size: 13px;
-  color: #888;
-}
-
-footer a {
-  color: #ccc;
-  text-decoration: underline;
-}
-
-footer a:hover {
+  background-color: #e60023;
   color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+footer {
+  font-size: 0.8rem;
+  margin-top: 20px;
+  text-align: center;
+  color: #aaa;
 }
