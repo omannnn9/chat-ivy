@@ -1,10 +1,12 @@
-from flask import Flask, request, jsonify, render_template
 import openai
 import os
 from dotenv import load_dotenv
+from flask import Flask, request, jsonify, render_template
 
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+
+openai.api_key = os.getenv("OPENROUTER_API_KEY")
+openai.api_base = "https://openrouter.ai/api/v1"
 
 app = Flask(__name__)
 
@@ -19,14 +21,15 @@ def chat():
 
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-4",
+            model="anthropic/claude-3-sonnet",
             messages=[
-                {"role": "system", "content": "You are Ivy, a friendly Gen Z financial assistant who explains loans, APR, EMIs and budgeting in a fun but helpful tone."},
+                {"role": "system", "content": "You are Ivy, a Gen Z-style financial assistant who answers questions about loans, APR, interest rates, budgeting, and gives helpful, fun, supportive advice. Be friendly, warm, and slightly playful."},
                 {"role": "user", "content": user_input}
             ]
         )
         reply = response.choices[0].message.content
-    except Exception:
+    except Exception as e:
+        print("Error:", e)
         reply = "Oops 🥲 I couldn’t reach the AI cloud, but I’m still here to help with offline stuff!"
 
     return jsonify({"reply": reply})
