@@ -37,6 +37,7 @@ function addMessage(sender, text) {
   if (sender === "ivy") {
     const img = document.createElement("img");
     img.src = "/static/ivy-profile.png";
+    img.alt = "Ivy Avatar";
     img.className = "chat-pfp";
     msg.appendChild(img);
   }
@@ -51,7 +52,7 @@ function addMessage(sender, text) {
 function addTyping() {
   const msg = document.createElement("div");
   msg.className = "message ivy typing";
-  msg.innerHTML = `<img src="/static/ivy-profile.png" class="chat-pfp" /><span>Typing...</span>`;
+  msg.innerHTML = `<img src="/static/ivy-profile.png" class="chat-pfp" alt="Ivy Avatar" /><span>Typing...</span>`;
   chatBox.appendChild(msg);
   chatBox.scrollTop = chatBox.scrollHeight;
 }
@@ -61,9 +62,9 @@ function removeTyping() {
   if (typing) typing.remove();
 }
 
-// 3D model
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js";
-import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/loaders/GLTFLoader.js";
+// ✅ Load the 3D model using CDN-based THREE.js
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
+import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/loaders/GLTFLoader.js';
 
 const container = document.getElementById("model-container");
 const scene = new THREE.Scene();
@@ -93,5 +94,5 @@ loader.load("/static/ivy-model.glb", (gltf) => {
 
   animate();
 }, undefined, (err) => {
-  console.error("Failed to load GLB model:", err);
+  console.error("❌ Failed to load Ivy's 3D model:", err);
 });
