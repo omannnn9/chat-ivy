@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 
-  <!-- ✅ Three.js & GLTFLoader CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/loaders/GLTFLoader.min.js"></script>
+  <!-- ✅ Three.js and GLTFLoader (v149 — compatible) -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/examples/js/loaders/GLTFLoader.js"></script>
 </head>
 <body>
   <div class="container">
@@ -18,13 +18,14 @@
       <p class="bio">
         This is Ivy — a smart, Gen Z-style financial assistant built by Oman, a 19-year-old creator passionate about making finance friendly and fun.
       </p>
+      <!-- ✅ 3D model will appear here -->
       <div id="ivy-3d" class="ivy-3d-container"></div>
     </aside>
 
     <main class="chat-panel">
       <div id="chat-box">
         <div class="message ivy">
-          <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="chat-pfp" alt="Ivy Avatar" title="Ivy" />
+          <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="chat-pfp" alt="Ivy Avatar" />
           <span>Hey hey! 👋 I’m Ivy. Ask me anything about loans 💸</span>
         </div>
       </div>
@@ -40,6 +41,7 @@
     </main>
   </div>
 
+  <!-- ✅ Main app script -->
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
