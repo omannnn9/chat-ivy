@@ -5,6 +5,7 @@
   <title>Ivy – Chat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="icon" href="{{ url_for('static', filename='ivy-profile.png') }}" />
 </head>
 <body>
   <div class="container">
@@ -36,7 +37,7 @@
     </main>
   </div>
 
-  <!-- ✅ WORKING ES MODULE 3D MODEL LOADER -->
+  <!-- ✅ Modular 3D model rendering -->
   <script type="module">
     import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js';
     import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/loaders/GLTFLoader.js';
@@ -63,11 +64,11 @@
 
       animate();
     }, undefined, function (error) {
-      console.error("❌ 3D model failed to load:", error);
+      console.error("❌ 3D model load failed:", error);
     });
   </script>
 
-  <!-- 💬 Chat logic (not a module) -->
+  <!-- 💬 Chat functionality (non-module) -->
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
