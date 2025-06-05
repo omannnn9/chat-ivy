@@ -1,6 +1,5 @@
 console.log("✅ Ivy script loaded");
 
-// Chat functionality
 const form = document.getElementById("chat-form");
 const input = document.getElementById("chat-input");
 const chatBox = document.getElementById("chat-box");
@@ -62,36 +61,3 @@ function removeTyping() {
   const typing = document.querySelector(".typing");
   if (typing) typing.remove();
 }
-
-// ✅ Load 3D model using Three.js + GLTFLoader
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ alpha: true });
-renderer.setSize(250, 250);
-
-const container = document.getElementById("ivy-3d");
-if (container) container.appendChild(renderer.domElement);
-else console.warn("⚠️ 3D container not found");
-
-const loader = new THREE.GLTFLoader(); // ✅ FIXED: use THREE.GLTFLoader
-loader.load(
-  '/static/ivy-model.glb',
-  function (gltf) {
-    console.log("✅ 3D model loaded.");
-    const model = gltf.scene;
-    scene.add(model);
-    camera.position.z = 2;
-
-    function animate() {
-      requestAnimationFrame(animate);
-      model.rotation.y += 0.01;
-      renderer.render(scene, camera);
-    }
-
-    animate();
-  },
-  undefined,
-  function (error) {
-    console.error("❌ Failed to load 3D model:", error);
-  }
-);
