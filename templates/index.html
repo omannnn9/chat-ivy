@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 
-  <!-- ✅ Fixed GLTFLoader setup -->
+  <!-- ✅ Working Three.js + GLTFLoader UMD version -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/examples/js/loaders/GLTFLoader.js"></script>
 
+  <!-- ✅ Your app logic -->
   <script defer src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
