@@ -27,7 +27,7 @@ form.addEventListener("submit", async (e) => {
   } catch (err) {
     removeTyping();
     console.error("❌ Chat error:", err);
-    addMessage("ivy", "Oops! Couldn’t connect. Try again later.");
+    addMessage("ivy", "Oops 🥲 I couldn’t reach the AI cloud, but I’m still here to help with offline stuff!");
   }
 });
 
@@ -63,7 +63,7 @@ function removeTyping() {
   if (typing) typing.remove();
 }
 
-// ✅ Load 3D model using GLTFLoader
+// ✅ Load 3D model using Three.js + GLTFLoader
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ alpha: true });
@@ -71,10 +71,11 @@ renderer.setSize(250, 250);
 
 const container = document.getElementById("ivy-3d");
 if (container) container.appendChild(renderer.domElement);
+else console.warn("⚠️ 3D container not found");
 
 const loader = new THREE.GLTFLoader();
 loader.load(
-  "/static/ivy-model.glb",
+  '/static/ivy-model.glb',
   function (gltf) {
     console.log("✅ 3D model loaded successfully.");
     const model = gltf.scene;
