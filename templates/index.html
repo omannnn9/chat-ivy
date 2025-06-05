@@ -1,46 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8" />
- <title>Ivy – Chat</title>
- <meta name="viewport" content="width=device-width, initial-scale=1" />
- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <meta charset="UTF-8" />
+  <title>Ivy – Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
- <div class="container">
-   <aside class="left-panel">
-     <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="ivy-pic" alt="Ivy Profile Picture" title="Ivy" />
-     <h1>Ivy</h1>
-     <p class="bio">
-       This is Ivy — a smart, Gen Z-style financial assistant, passionate about making finance friendly and fun.
-     </p>
-     <div id="ivy-3d" class="ivy-3d-container"></div>
-   </aside>
+  <div class="container">
+    <aside class="left-panel">
+      <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="ivy-pic" alt="Ivy Profile Picture" />
+      <h1>Ivy</h1>
+      <p class="bio">
+        This is Ivy — a smart, Gen Z-style financial assistant built by Oman, a 19-year-old creator passionate about making finance friendly and fun.
+      </p>
+      <div id="ivy-3d" class="ivy-3d-container"></div>
+    </aside>
 
-   <main class="chat-panel">
-     <div id="chat-box">
-       <div class="message ivy">
-         <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="chat-pfp" alt="Ivy Avatar" />
-         <span>Hey hey! 👋 I’m Ivy. Ask me anything about loans 💸</span>
-       </div>
-     </div>
+    <main class="chat-panel">
+      <div id="chat-box">
+        <div class="message ivy">
+          <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="chat-pfp" alt="Ivy Avatar" />
+          <span>Hey hey! 👋 I’m Ivy. Ask me anything about loans 💸</span>
+        </div>
+      </div>
 
-     <form id="chat-form">
-       <input type="text" id="chat-input" placeholder="Type here..." autocomplete="off" />
-       <button type="submit" id="send-button">Send</button>
-     </form>
+      <form id="chat-form">
+        <input type="text" id="chat-input" placeholder="Type here..." autocomplete="off" />
+        <button type="submit" id="send-button">Send</button>
+      </form>
 
-     <footer>
-       Contact: <a href="mailto:dilloooman26@gmail.com">dilloooman26@gmail.com</a>
-     </footer>
-   </main>
- </div>
+      <footer>
+        Contact: <a href="mailto:dilloooman26@gmail.com">dilloooman26@gmail.com</a>
+      </footer>
+    </main>
+  </div>
 
- <!-- ✅ Scripts: Correct order, proper loading -->
- <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/examples/js/loaders/GLTFLoader.js"></script>
+  <!-- ✅ Load modern Three.js and GLTFLoader via ES modules -->
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js';
+    import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/loaders/GLTFLoader.js';
 
- <!-- Ensure this script runs after the others -->
- <script src="{{ url_for('static', filename='script.js') }}"></script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setSize(250, 250);
+
+    const container = document.getElementById("ivy-3d");
+    container.appendChild(renderer.domElement);
+
+    const loader = new GLTFLoader();
+    loader.load('/static/ivy-model.glb', function (gltf) {
+      const model = gltf.scene;
+      scene.add(model);
+      camera.position.z = 2;
+
+      function animate() {
+        requestAnimationFrame(animate);
+        model.rotation.y += 0.01;
+        renderer.render(scene, camera);
+      }
+
+      animate();
+    }, undefined, function (error) {
+      console.error("❌ 3D model load failed:", error);
+    });
+  </script>
+
+  <!-- 💬 Chat logic -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
