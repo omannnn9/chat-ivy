@@ -70,10 +70,15 @@ const renderer = new THREE.WebGLRenderer({ alpha: true });
 renderer.setSize(250, 250);
 
 const container = document.getElementById("ivy-3d");
-if (container) container.appendChild(renderer.domElement);
-else console.warn("⚠️ 3D container not found");
+if (container) {
+  container.appendChild(renderer.domElement);
+} else {
+  console.warn("⚠️ 3D container not found");
+}
 
-const loader = new THREE.GLTFLoader();
+// ✅ FIXED: Use GLTFLoader as global (not THREE.GLTFLoader)
+const loader = new GLTFLoader();
+
 loader.load(
   '/static/ivy-model.glb',
   function (gltf) {
