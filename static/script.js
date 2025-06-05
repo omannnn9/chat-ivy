@@ -70,19 +70,14 @@ const renderer = new THREE.WebGLRenderer({ alpha: true });
 renderer.setSize(250, 250);
 
 const container = document.getElementById("ivy-3d");
-if (container) {
-  container.appendChild(renderer.domElement);
-} else {
-  console.warn("⚠️ 3D container not found");
-}
+if (container) container.appendChild(renderer.domElement);
+else console.warn("⚠️ 3D container not found");
 
-// ✅ FIXED: Use GLTFLoader as global (not THREE.GLTFLoader)
-const loader = new GLTFLoader();
-
+const loader = new THREE.GLTFLoader(); // ✅ FIXED: use THREE.GLTFLoader
 loader.load(
   '/static/ivy-model.glb',
   function (gltf) {
-    console.log("✅ 3D model loaded successfully.");
+    console.log("✅ 3D model loaded.");
     const model = gltf.scene;
     scene.add(model);
     camera.position.z = 2;
@@ -98,6 +93,5 @@ loader.load(
   undefined,
   function (error) {
     console.error("❌ Failed to load 3D model:", error);
-    alert("3D model failed to load. See console for details.");
   }
 );
