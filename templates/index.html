@@ -36,7 +36,7 @@
     </main>
   </div>
 
-  <!-- ✅ Load modern Three.js and GLTFLoader via ES modules -->
+  <!-- ✅ WORKING ES MODULE 3D MODEL LOADER -->
   <script type="module">
     import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js';
     import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/loaders/GLTFLoader.js';
@@ -63,11 +63,11 @@
 
       animate();
     }, undefined, function (error) {
-      console.error("❌ 3D model load failed:", error);
+      console.error("❌ 3D model failed to load:", error);
     });
   </script>
 
-  <!-- 💬 Chat logic -->
+  <!-- 💬 Chat logic (not a module) -->
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
