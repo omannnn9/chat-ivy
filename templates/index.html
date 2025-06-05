@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Ivy – Chat</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+ <meta charset="UTF-8" />
+ <title>Ivy – Chat</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
-  <div class="container">
-    <aside class="left-panel">
-      <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="ivy-pic" alt="Ivy Profile Picture" title="Ivy" />
-      <h1>Ivy</h1>
-      <p class="bio">
-        This is Ivy — a smart, Gen Z-style financial assistant, passionate about making finance friendly and fun.
-      </p>
-      <div id="ivy-3d" class="ivy-3d-container"></div>
-    </aside>
+ <div class="container">
+   <aside class="left-panel">
+     <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="ivy-pic" alt="Ivy Profile Picture" title="Ivy" />
+     <h1>Ivy</h1>
+     <p class="bio">
+       This is Ivy — a smart, Gen Z-style financial assistant, passionate about making finance friendly and fun.
+     </p>
+     <div id="ivy-3d" class="ivy-3d-container"></div>
+   </aside>
 
-    <main class="chat-panel">
-      <div id="chat-box">
-        <div class="message ivy">
-          <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="chat-pfp" alt="Ivy Avatar" />
-          <span>Hey hey! 👋 I’m Ivy. Ask me anything about loans 💸</span>
-        </div>
-      </div>
+   <main class="chat-panel">
+     <div id="chat-box">
+       <div class="message ivy">
+         <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="chat-pfp" alt="Ivy Avatar" />
+         <span>Hey hey! 👋 I’m Ivy. Ask me anything about loans 💸</span>
+       </div>
+     </div>
 
-      <form id="chat-form">
-        <input type="text" id="chat-input" placeholder="Type here..." autocomplete="off" />
-        <button type="submit" id="send-button">Send</button>
-      </form>
+     <form id="chat-form">
+       <input type="text" id="chat-input" placeholder="Type here..." autocomplete="off" />
+       <button type="submit" id="send-button">Send</button>
+     </form>
 
-      <footer>
-        Contact: <a href="mailto:dilloooman26@gmail.com">dilloooman26@gmail.com</a>
-      </footer>
-    </main>
-  </div>
+     <footer>
+       Contact: <a href="mailto:dilloooman26@gmail.com">dilloooman26@gmail.com</a>
+     </footer>
+   </main>
+ </div>
 
-  <!-- ✅ Scripts: Three.js + GLTFLoader + Your logic -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/examples/js/loaders/GLTFLoader.js"></script>
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+ <!-- ✅ Scripts: Correct order, proper loading -->
+ <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/examples/js/loaders/GLTFLoader.js"></script>
+
+ <!-- Ensure this script runs after the others -->
+ <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
