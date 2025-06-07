@@ -1,6 +1,6 @@
 import os
 import json
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, render_template, request, jsonify
 import openai
 from dotenv import load_dotenv
 
@@ -31,28 +31,25 @@ def home():
 def chat():
     user_input = request.json.get("message", "").strip().lower()
 
-    # ✅ Try AI cloud
+    # ✅ Try AI cloud first
     if USE_AI:
         try:
             response = openai.ChatCompletion.create(
                 model="openrouter/auto",
                 messages=[
-                    {"role": "system", "content": "You are Ivy, a Gen Z-style financial expert who answers questions in a fun, emoji-rich, friendly way."},
+                    {"role": "system", "content": "You are Ivy, a Gen Z-style financial expert who replies clearly with emojis and energy."},
                     {"role": "user", "content": user_input}
                 ],
-                temperature=0.85
+                temperature=0.8,
             )
-            reply = response["choices"][0]["message"]["content"]
-            return jsonify({"reply": reply})
+            return jsonify({"reply": response["choices"][0]["message"]["content"]})
         except Exception as e:
-            print("AI Error:", e)
+            print("⚠️ AI error:", e)
 
-    # ✅ Offline fallback
+    # ✅ Offline fallback using "question" field
     for item in knowledge_base:
-        if "questions" in item and isinstance(item["questions"], list):
-            for q in item["questions"]:
-                if q.lower() in user_input:
-                    return jsonify({"reply": item["answer"]})
+        if item.get("question", "").lower() in user_input:
+            return jsonify({"reply": item.get("answer", "Hmm... I’ll get back to you on that! 😅")})
 
     return jsonify({
         "reply": "Oops 🥲 I couldn’t reach the AI cloud, but I’m still here to help with offline stuff!"
