@@ -5,10 +5,11 @@ from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
-# Try loading the key directly from environment
+# Load the OpenRouter API key from environment variable
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
+print("🔑 API key exists:", bool(OPENROUTER_API_KEY))
 
-# Load offline JSON knowledge base
+# Load offline fallback knowledge base
 with open("ivy_knowledge_base_genz_expanded.json", "r", encoding="utf-8") as f:
     knowledge_base = json.load(f)
 
@@ -21,7 +22,7 @@ def chat():
     data = request.get_json()
     user_message = data.get("message", "").strip().lower()
 
-    # ✅ Use OpenRouter if key exists
+    # ✅ Try OpenRouter API
     if OPENROUTER_API_KEY:
         try:
             headers = {
@@ -38,13 +39,16 @@ def chat():
             }
 
             response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=payload)
+            print("🌐 OpenRouter status:", response.status_code)
+            print("🌐 OpenRouter response:", response.text)
+
             result = response.json()
             reply = result["choices"][0]["message"]["content"].strip()
             return jsonify({"reply": reply})
         except Exception as e:
-            print("⚠️ OpenRouter error:", e)
+            print("❌ OpenRouter error:", e)
 
-    # 🧠 Offline fallback
+    # 🧠 Offline fallback if API not available or failed
     for entry in knowledge_base:
         for example in entry.get("examples", []):
             if example.lower() in user_message:
