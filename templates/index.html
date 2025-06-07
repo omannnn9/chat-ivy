@@ -9,11 +9,12 @@
 <body>
   <div class="container">
     <aside class="left-panel">
-      <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="ivy-pic" alt="Ivy Profile Picture" />
+      <img src="{{ url_for('static', filename='ivy-profile.png') }}" class="ivy-pic" alt="Ivy Profile Picture" title="Ivy" />
       <h1>Ivy</h1>
       <p class="bio">
-        This is Ivy — your Gen Z-style financial chatbot built to make loans simple and fun 💸. Whether you’re asking about APR, EMIs, or how loans work, Ivy breaks it down with emojis, clarity, and good vibes. No jargon, no pressure — just smart, friendly money help, anytime you need it!
-      <div id="ivy-3d" class="ivy-3d-container"></div>
+        This is Ivy — a smart, Gen Z-style financial assistant built as a fun project to make finance friendly and fun. 💬
+      </p>
+      <a href="/help" class="help-link">💬 What can I ask Ivy?</a>
     </aside>
 
     <main class="chat-panel">
@@ -25,7 +26,7 @@
       </div>
 
       <form id="chat-form">
-        <input type="text" id="chat-input" placeholder="Type here..." autocomplete="off" />
+        <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off" />
         <button type="submit" id="send-button">Send</button>
       </form>
 
@@ -35,38 +36,6 @@
     </main>
   </div>
 
-  <!-- ✅ FIXED: Proper Three.js and GLTFLoader ES modules -->
- <script type="module">
-  import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js';
-  import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/loaders/GLTFLoader.js';
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({ alpha: true });
-  renderer.setSize(250, 250);
-
-  const container = document.getElementById("ivy-3d");
-  container.appendChild(renderer.domElement);
-
-  const loader = new GLTFLoader();
-  loader.load('/static/ivy-model.glb', (gltf) => {
-    const model = gltf.scene;
-    scene.add(model);
-    camera.position.z = 2;
-
-    function animate() {
-      requestAnimationFrame(animate);
-      model.rotation.y += 0.01;
-      renderer.render(scene, camera);
-    }
-
-    animate();
-  }, undefined, (err) => {
-    console.error("❌ 3D model failed to load:", err);
-  });
-</script>
-
-  <!-- 💬 Chat logic (keep chat-only logic in here) -->
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
