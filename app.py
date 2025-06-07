@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
-# Load OpenRouter API key
+# Load OpenRouter API key from environment
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 print("🔑 API key loaded:", bool(OPENROUTER_API_KEY))
 
@@ -22,13 +22,13 @@ def chat():
     data = request.get_json()
     user_message = data.get("message", "").strip().lower()
 
-    # ✅ Try OpenRouter API
+    # ✅ Attempt to use OpenRouter API
     if OPENROUTER_API_KEY:
         try:
             headers = {
                 "Authorization": f"Bearer {OPENROUTER_API_KEY}",
                 "Content-Type": "application/json",
-                "Referer": "https://chat-ivy-353j.onrender.com"  # required for OpenRouter
+                "Referer": "https://chat-ivy-353j.onrender.com"
             }
 
             payload = {
@@ -36,7 +36,7 @@ def chat():
                 "messages": [
                     {
                         "role": "system",
-                        "content": "You are Ivy, a helpful and friendly Gen Z-style financial assistant. Speak casually and explain things clearly."
+                        "content": "You are Ivy, a Gen Z-friendly AI that explains financial topics like loans and APR in a clear, casual tone. Be helpful and friendly."
                     },
                     {
                         "role": "user",
@@ -46,7 +46,6 @@ def chat():
             }
 
             response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=payload)
-
             print("🌐 OpenRouter status:", response.status_code)
             print("🌐 OpenRouter response:", response.text)
 
@@ -55,14 +54,13 @@ def chat():
                 reply = result["choices"][0]["message"]["content"].strip()
                 return jsonify({"reply": reply})
             else:
-                print("⚠️ AI request failed. Falling back to offline response.")
-
+                print("⚠️ OpenRouter failed. Using local fallback.")
         except Exception as e:
+            print("❌ Exception when calling OpenRouter:")
             import traceback
-            print("❌ Exception during OpenRouter call:")
             traceback.print_exc()
 
-    # 🧠 Offline fallback if API fails or is unreachable
+    # 🔁 Local JSON fallback
     for entry in knowledge_base:
         for example in entry.get("examples", []):
             if example.lower() in user_message:
