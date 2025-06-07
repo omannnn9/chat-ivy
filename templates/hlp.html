@@ -1,0 +1,73 @@
+<!-- templates/help.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>What You Can Ask Ivy 💬</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #111;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #e63946;
+    }
+    .category-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .category {
+      flex: 1 1 200px;
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+    .category:hover {
+      background: #e63946;
+    }
+    .category h3 {
+      margin-top: 0;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    a.back {
+      display: inline-block;
+      margin-top: 20px;
+      color: #e63946;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Questions You Can Ask Ivy 💬</h1>
+  <p>Here’s what Ivy understands — hover or scroll through each category!</p>
+
+  <div class="category-container">
+    {% for category, questions in categories.items() %}
+    <div class="category">
+      <h3>{{ category }}</h3>
+      <ul>
+        {% for q in questions %}
+          <li>{{ q }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+
+  <a href="/" class="back">← Back to chat</a>
+</body>
+</html>
