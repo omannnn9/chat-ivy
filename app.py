@@ -5,11 +5,11 @@ from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
-# ✅ Load API key from environment
+# ✅ Load OpenRouter API Key
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 print("🔑 API key loaded:", bool(OPENROUTER_API_KEY))
 
-# ✅ Load offline JSON fallback
+# ✅ Load updated offline knowledge base
 with open("ivy_knowledge_base_genz_expanded.json", "r", encoding="utf-8") as f:
     knowledge_base = json.load(f)
 
@@ -22,7 +22,7 @@ def chat():
     data = request.get_json()
     user_message = data.get("message", "").strip().lower()
 
-    # ✅ Try OpenRouter API if key is set
+    # ✅ Try OpenRouter API if available
     if OPENROUTER_API_KEY:
         try:
             headers = {
@@ -36,7 +36,7 @@ def chat():
                 "messages": [
                     {
                         "role": "system",
-                        "content": "You are Ivy, a Gen Z-style friendly AI assistant that explains financial topics like loans, APR, interest rates and EMIs in a simple and fun way. Respond clearly and casually."
+                        "content": "You are Ivy, a Gen Z-style loan and finance assistant who replies in a friendly, helpful tone."
                     },
                     {
                         "role": "user",
@@ -52,19 +52,18 @@ def chat():
             )
 
             print("🌐 OpenRouter status:", response.status_code)
-            print("🌐 OpenRouter response:", response.text)
 
             if response.status_code == 200:
                 result = response.json()
                 reply = result["choices"][0]["message"]["content"].strip()
                 return jsonify({"reply": reply})
             else:
-                print("⚠️ API failed. Falling back.")
+                print("⚠️ API error. Using fallback.")
 
         except Exception as e:
-            print("❌ API Exception:", str(e))
+            print("❌ Exception during API call:", str(e))
 
-    # 🔁 Offline fallback
+    # 🧠 Offline fallback from updated format
     for entry in knowledge_base:
         for example in entry.get("examples", []):
             if example.lower() in user_message:
