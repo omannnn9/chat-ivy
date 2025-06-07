@@ -5,11 +5,11 @@ from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
-# ✅ Load OpenRouter API Key
+# Load API key if present
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 print("🔑 API key loaded:", bool(OPENROUTER_API_KEY))
 
-# ✅ Load updated offline knowledge base
+# Load the offline knowledge base
 with open("ivy_knowledge_base_genz_expanded.json", "r", encoding="utf-8") as f:
     knowledge_base = json.load(f)
 
@@ -22,7 +22,7 @@ def chat():
     data = request.get_json()
     user_message = data.get("message", "").strip().lower()
 
-    # ✅ Try OpenRouter API if available
+    # Online AI fallback
     if OPENROUTER_API_KEY:
         try:
             headers = {
@@ -30,40 +30,21 @@ def chat():
                 "Content-Type": "application/json",
                 "Referer": "https://chat-ivy-353j.onrender.com"
             }
-
             payload = {
                 "model": "openai/gpt-3.5-turbo",
                 "messages": [
-                    {
-                        "role": "system",
-                        "content": "You are Ivy, a Gen Z-style loan and finance assistant who replies in a friendly, helpful tone."
-                    },
-                    {
-                        "role": "user",
-                        "content": user_message
-                    }
+                    {"role": "system", "content": "You are Ivy, a Gen Z financial chatbot."},
+                    {"role": "user", "content": user_message}
                 ]
             }
-
-            response = requests.post(
-                "https://openrouter.ai/api/v1/chat/completions",
-                headers=headers,
-                json=payload
-            )
-
-            print("🌐 OpenRouter status:", response.status_code)
-
+            response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=payload)
             if response.status_code == 200:
-                result = response.json()
-                reply = result["choices"][0]["message"]["content"].strip()
+                reply = response.json()["choices"][0]["message"]["content"]
                 return jsonify({"reply": reply})
-            else:
-                print("⚠️ API error. Using fallback.")
-
         except Exception as e:
-            print("❌ Exception during API call:", str(e))
+            print("🔁 API fallback error:", e)
 
-    # 🧠 Offline fallback from updated format
+    # Offline fallback
     for entry in knowledge_base:
         for example in entry.get("examples", []):
             if example.lower() in user_message:
