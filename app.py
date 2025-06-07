@@ -27,20 +27,26 @@ def chat():
         try:
             headers = {
                 "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-                "HTTP-Referer": "https://chat-ivy-353j.onrender.com",  # Required by OpenRouter
-                "X-Title": "Ivy",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Referer": "https://chat-ivy-353j.onrender.com"  # required for OpenRouter
             }
 
             payload = {
                 "model": "openai/gpt-3.5-turbo",
                 "messages": [
-                    {"role": "system", "content": "You are Ivy, a helpful, friendly Gen Z-style financial assistant who explains everything clearly."},
-                    {"role": "user", "content": user_message}
+                    {
+                        "role": "system",
+                        "content": "You are Ivy, a helpful and friendly Gen Z-style financial assistant. Speak casually and explain things clearly."
+                    },
+                    {
+                        "role": "user",
+                        "content": user_message
+                    }
                 ]
             }
 
             response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=payload)
+
             print("🌐 OpenRouter status:", response.status_code)
             print("🌐 OpenRouter response:", response.text)
 
@@ -49,13 +55,14 @@ def chat():
                 reply = result["choices"][0]["message"]["content"].strip()
                 return jsonify({"reply": reply})
             else:
-                print("⚠️ AI call failed, falling back to local responses.")
+                print("⚠️ AI request failed. Falling back to offline response.")
+
         except Exception as e:
-            print("❌ Error with OpenRouter API:")
             import traceback
+            print("❌ Exception during OpenRouter call:")
             traceback.print_exc()
 
-    # 🔁 Offline fallback if OpenRouter fails or is unreachable
+    # 🧠 Offline fallback if API fails or is unreachable
     for entry in knowledge_base:
         for example in entry.get("examples", []):
             if example.lower() in user_message:
