@@ -5,9 +5,9 @@ from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
-# Load the OpenRouter API key from environment variable
+# Load OpenRouter API key
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
-print("🔑 API key exists:", bool(OPENROUTER_API_KEY))
+print("🔑 API key loaded:", bool(OPENROUTER_API_KEY))
 
 # Load offline fallback knowledge base
 with open("ivy_knowledge_base_genz_expanded.json", "r", encoding="utf-8") as f:
@@ -27,13 +27,15 @@ def chat():
         try:
             headers = {
                 "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+                "HTTP-Referer": "https://chat-ivy-353j.onrender.com",  # Required by OpenRouter
+                "X-Title": "Ivy",
                 "Content-Type": "application/json"
             }
 
             payload = {
                 "model": "openai/gpt-3.5-turbo",
                 "messages": [
-                    {"role": "system", "content": "You are Ivy, a friendly Gen Z financial assistant."},
+                    {"role": "system", "content": "You are Ivy, a helpful, friendly Gen Z-style financial assistant who explains everything clearly."},
                     {"role": "user", "content": user_message}
                 ]
             }
@@ -47,14 +49,13 @@ def chat():
                 reply = result["choices"][0]["message"]["content"].strip()
                 return jsonify({"reply": reply})
             else:
-                return jsonify({"reply": f"⚠️ AI response error: {response.status_code} – {response.text}"})
-
+                print("⚠️ AI call failed, falling back to local responses.")
         except Exception as e:
+            print("❌ Error with OpenRouter API:")
             import traceback
-            print("❌ Exception occurred during OpenRouter request:")
             traceback.print_exc()
 
-    # 🧠 Offline fallback if API fails
+    # 🔁 Offline fallback if OpenRouter fails or is unreachable
     for entry in knowledge_base:
         for example in entry.get("examples", []):
             if example.lower() in user_message:
