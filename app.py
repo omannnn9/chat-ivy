@@ -42,13 +42,19 @@ def chat():
             print("🌐 OpenRouter status:", response.status_code)
             print("🌐 OpenRouter response:", response.text)
 
-            result = response.json()
-            reply = result["choices"][0]["message"]["content"].strip()
-            return jsonify({"reply": reply})
-        except Exception as e:
-            print("❌ OpenRouter error:", e)
+            if response.status_code == 200:
+                result = response.json()
+                reply = result["choices"][0]["message"]["content"].strip()
+                return jsonify({"reply": reply})
+            else:
+                return jsonify({"reply": f"⚠️ AI response error: {response.status_code} – {response.text}"})
 
-    # 🧠 Offline fallback if API not available or failed
+        except Exception as e:
+            import traceback
+            print("❌ Exception occurred during OpenRouter request:")
+            traceback.print_exc()
+
+    # 🧠 Offline fallback if API fails
     for entry in knowledge_base:
         for example in entry.get("examples", []):
             if example.lower() in user_message:
