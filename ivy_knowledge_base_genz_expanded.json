@@ -1,32 +1,809 @@
 [
   {
-    "intent": "greeting",
-    "examples": ["hi", "hello", "hey", "how are you", "good morning", "yo", "sup"],
-    "response": "Hey there! 👋 I’m Ivy — your friendly Gen Z loan expert! Ask me anything about loans, APR, EMIs or how to slay your money game 💸💅"
+    "examples": [
+      "what is a loan",
+      "can you explain loans",
+      "how do loans work"
+    ],
+    "response": "A loan is money you borrow from a bank or lender that you agree to pay back over time with interest. Loans help you afford things like school \ud83c\udf93, cars \ud83d\ude97, or homes \ud83c\udfe1, but they come with responsibilities!"
   },
   {
-    "intent": "loan_what",
-    "examples": ["what is a loan", "explain loan", "tell me about loans", "how do loans work", "loan meaning"],
-    "response": "A loan is 💸 money you borrow from a bank or lender — and agree to pay back with interest 📆. People take loans for houses, cars, studies, and even businesses. It's like a financial booster pack — but make sure you read the fine print! 📃"
+    "examples": [
+      "what is apr",
+      "what does apr mean",
+      "explain apr in loans"
+    ],
+    "response": "APR (Annual Percentage Rate) is the total yearly cost of borrowing, including interest and fees. It's how much the loan really costs you. Lower APR = better deal! \ud83d\udca1"
   },
   {
-    "intent": "loan_apr",
-    "examples": ["what is apr", "apr meaning", "explain apr", "apr in loan", "how does apr work"],
-    "response": "APR stands for Annual Percentage Rate 💡 — it's the *real* cost of borrowing money over a year. It includes the interest rate *plus* any extra fees or charges. So if you're comparing loans, the APR gives you the **true total cost** 🔍. Lower APR = better deal, always! 😉"
+    "examples": [
+      "what is an emi",
+      "explain emi",
+      "monthly payments loan"
+    ],
+    "response": "EMI stands for Equated Monthly Installment. It's the fixed amount you pay every month to repay a loan. It includes both the principal and the interest. Think of it like a subscription but for borrowing money \ud83d\udcb8."
   },
   {
-    "intent": "loan_example",
-    "examples": ["loan example", "show me a loan", "give an example loan"],
-    "response": "Sure! 🎯 Let's say you borrow $5,000 at a 6% annual interest rate for 2 years. Your monthly payment would be around $221.60. That includes both the interest and the repayment amount. Neat, right? 😊"
+    "examples": [
+      "types of loans",
+      "loan categories",
+      "what loans can i get"
+    ],
+    "response": "There are many types of loans: personal loans (for anything), student loans (education), home loans (mortgages), car loans, and even payday loans. Choose based on what you need and can afford! \ud83e\udde0"
   },
   {
-    "intent": "thank_you",
-    "examples": ["thank you", "thanks", "appreciate it", "cool", "awesome"],
-    "response": "You're super welcome! 💕 Need help with anything else about money, loans or APRs?"
+    "examples": [
+      "how is interest calculated",
+      "how do you calculate loan interest",
+      "loan interest formula"
+    ],
+    "response": "Simple interest = (Principal \u00d7 Rate \u00d7 Time) / 100. But most loans use compound interest, which means interest is added on top of interest. Always ask your lender how it's calculated! \ud83e\uddee"
   },
   {
-    "intent": "bye",
-    "examples": ["bye", "goodbye", "see you", "later", "catch you later"],
-    "response": "Later skater! 🛹 Don’t forget to be smart with your 💰! I’ll be right here when you need me!"
+    "examples": [
+      "can i get a loan without collateral",
+      "what is an unsecured loan"
+    ],
+    "response": "Yes! Unsecured loans don\u2019t require any collateral (like your house or car). But they usually come with higher interest rates since they\u2019re riskier for lenders \ud83d\udd13."
+  },
+  {
+    "examples": [
+      "what affects loan approval",
+      "why was my loan denied",
+      "loan eligibility factors"
+    ],
+    "response": "Loan approval depends on your credit score, income, debt-to-income ratio, and history with repayments. Lenders want to know you're trustworthy and able to repay \ud83d\udcb3."
+  },
+  {
+    "examples": [
+      "credit score loan",
+      "minimum credit score for loan",
+      "does credit score matter"
+    ],
+    "response": "Yes! Credit score is one of the biggest factors. Generally, 650+ is decent, 700+ is good, and 750+ is great. Better score = better loan terms \ud83c\udfaf."
+  },
+  {
+    "examples": [
+      "should i pay loan early",
+      "is early repayment good",
+      "pay off loan faster"
+    ],
+    "response": "Paying off your loan early can save money on interest! Just check if there are prepayment penalties. Some loans charge a fee for paying too soon \ud83d\udca1."
+  },
+  {
+    "examples": [
+      "what is a cosigner",
+      "do i need a cosigner",
+      "loan with cosigner"
+    ],
+    "response": "A cosigner is someone who signs the loan with you and agrees to repay if you can't. Having one helps if your credit score or income isn't enough \ud83d\udcaa."
+  },
+  {
+    "examples": [
+      "loan vs credit card",
+      "loan vs credit card?",
+      "can you explain loan vs credit card"
+    ],
+    "response": "Loans are better for big purchases & planned repayment. Credit cards are good for flexibility, but interest can be higher \ud83d\udcb3."
+  },
+  {
+    "examples": [
+      "difference between fixed and variable interest",
+      "difference between fixed and variable interest?",
+      "can you explain difference between fixed and variable interest"
+    ],
+    "response": "Fixed stays the same; variable can change with the market \ud83d\udcc8\ud83d\udcc9. Fixed = predictable, variable = risky but potentially cheaper."
+  },
+  {
+    "examples": [
+      "can students get loans",
+      "can students get loans?",
+      "can you explain can students get loans"
+    ],
+    "response": "Yes! Student loans are designed for education and may come with flexible repayment or grace periods after graduation \ud83c\udf93."
+  },
+  {
+    "examples": [
+      "repayment period meaning",
+      "repayment period meaning?",
+      "can you explain repayment period meaning"
+    ],
+    "response": "Repayment period is the time you have to pay the loan back \u2014 e.g. 5 years. Longer = smaller payments but more interest \ud83d\udcc6."
+  },
+  {
+    "examples": [
+      "loan approval time",
+      "loan approval time?",
+      "can you explain loan approval time"
+    ],
+    "response": "It depends! Online loans may take hours, while bank loans can take days or weeks. Tip: keep your documents ready \ud83d\udcc4."
+  },
+  {
+    "examples": [
+      "loan default",
+      "loan default?",
+      "can you explain loan default"
+    ],
+    "response": "Defaulting means failing to repay your loan. It can hurt your credit score and lead to legal action or asset seizure \u274c."
+  },
+  {
+    "examples": [
+      "can i refinance my loan",
+      "can i refinance my loan?",
+      "can you explain can i refinance my loan"
+    ],
+    "response": "Yes! Refinancing replaces your old loan with a new one \u2014 ideally with better terms. It\u2019s like a loan makeover \ud83d\udc85."
+  },
+  {
+    "examples": [
+      "how much can i borrow",
+      "how much can i borrow?",
+      "can you explain how much can i borrow"
+    ],
+    "response": "That depends on your income, credit score, and existing debts. Lenders usually cap it to keep you from borrowing too much \ud83d\udcb0."
+  },
+  {
+    "examples": [
+      "is online loan safe",
+      "is online loan safe?",
+      "can you explain is online loan safe"
+    ],
+    "response": "Many online loans are legit \u2014 just check reviews and licenses. Avoid shady sites asking for upfront fees \ud83d\udea8."
+  },
+  {
+    "examples": [
+      "what is debt consolidation",
+      "what is debt consolidation?",
+      "can you explain what is debt consolidation"
+    ],
+    "response": "It combines multiple debts into one loan. One payment, often lower interest. Great for managing credit card debt \ud83e\uddfe."
+  },
+  {
+    "examples": [
+      "loan vs credit card",
+      "loan vs credit card?",
+      "can you explain loan vs credit card"
+    ],
+    "response": "Loans are better for big purchases & planned repayment. Credit cards are good for flexibility, but interest can be higher \ud83d\udcb3."
+  },
+  {
+    "examples": [
+      "difference between fixed and variable interest",
+      "difference between fixed and variable interest?",
+      "can you explain difference between fixed and variable interest"
+    ],
+    "response": "Fixed stays the same; variable can change with the market \ud83d\udcc8\ud83d\udcc9. Fixed = predictable, variable = risky but potentially cheaper."
+  },
+  {
+    "examples": [
+      "can students get loans",
+      "can students get loans?",
+      "can you explain can students get loans"
+    ],
+    "response": "Yes! Student loans are designed for education and may come with flexible repayment or grace periods after graduation \ud83c\udf93."
+  },
+  {
+    "examples": [
+      "repayment period meaning",
+      "repayment period meaning?",
+      "can you explain repayment period meaning"
+    ],
+    "response": "Repayment period is the time you have to pay the loan back \u2014 e.g. 5 years. Longer = smaller payments but more interest \ud83d\udcc6."
+  },
+  {
+    "examples": [
+      "loan approval time",
+      "loan approval time?",
+      "can you explain loan approval time"
+    ],
+    "response": "It depends! Online loans may take hours, while bank loans can take days or weeks. Tip: keep your documents ready \ud83d\udcc4."
+  },
+  {
+    "examples": [
+      "loan default",
+      "loan default?",
+      "can you explain loan default"
+    ],
+    "response": "Defaulting means failing to repay your loan. It can hurt your credit score and lead to legal action or asset seizure \u274c."
+  },
+  {
+    "examples": [
+      "can i refinance my loan",
+      "can i refinance my loan?",
+      "can you explain can i refinance my loan"
+    ],
+    "response": "Yes! Refinancing replaces your old loan with a new one \u2014 ideally with better terms. It\u2019s like a loan makeover \ud83d\udc85."
+  },
+  {
+    "examples": [
+      "how much can i borrow",
+      "how much can i borrow?",
+      "can you explain how much can i borrow"
+    ],
+    "response": "That depends on your income, credit score, and existing debts. Lenders usually cap it to keep you from borrowing too much \ud83d\udcb0."
+  },
+  {
+    "examples": [
+      "is online loan safe",
+      "is online loan safe?",
+      "can you explain is online loan safe"
+    ],
+    "response": "Many online loans are legit \u2014 just check reviews and licenses. Avoid shady sites asking for upfront fees \ud83d\udea8."
+  },
+  {
+    "examples": [
+      "what is debt consolidation",
+      "what is debt consolidation?",
+      "can you explain what is debt consolidation"
+    ],
+    "response": "It combines multiple debts into one loan. One payment, often lower interest. Great for managing credit card debt \ud83e\uddfe."
+  },
+  {
+    "examples": [
+      "loan vs credit card",
+      "loan vs credit card?",
+      "can you explain loan vs credit card"
+    ],
+    "response": "Loans are better for big purchases & planned repayment. Credit cards are good for flexibility, but interest can be higher \ud83d\udcb3."
+  },
+  {
+    "examples": [
+      "difference between fixed and variable interest",
+      "difference between fixed and variable interest?",
+      "can you explain difference between fixed and variable interest"
+    ],
+    "response": "Fixed stays the same; variable can change with the market \ud83d\udcc8\ud83d\udcc9. Fixed = predictable, variable = risky but potentially cheaper."
+  },
+  {
+    "examples": [
+      "can students get loans",
+      "can students get loans?",
+      "can you explain can students get loans"
+    ],
+    "response": "Yes! Student loans are designed for education and may come with flexible repayment or grace periods after graduation \ud83c\udf93."
+  },
+  {
+    "examples": [
+      "repayment period meaning",
+      "repayment period meaning?",
+      "can you explain repayment period meaning"
+    ],
+    "response": "Repayment period is the time you have to pay the loan back \u2014 e.g. 5 years. Longer = smaller payments but more interest \ud83d\udcc6."
+  },
+  {
+    "examples": [
+      "loan approval time",
+      "loan approval time?",
+      "can you explain loan approval time"
+    ],
+    "response": "It depends! Online loans may take hours, while bank loans can take days or weeks. Tip: keep your documents ready \ud83d\udcc4."
+  },
+  {
+    "examples": [
+      "loan default",
+      "loan default?",
+      "can you explain loan default"
+    ],
+    "response": "Defaulting means failing to repay your loan. It can hurt your credit score and lead to legal action or asset seizure \u274c."
+  },
+  {
+    "examples": [
+      "can i refinance my loan",
+      "can i refinance my loan?",
+      "can you explain can i refinance my loan"
+    ],
+    "response": "Yes! Refinancing replaces your old loan with a new one \u2014 ideally with better terms. It\u2019s like a loan makeover \ud83d\udc85."
+  },
+  {
+    "examples": [
+      "how much can i borrow",
+      "how much can i borrow?",
+      "can you explain how much can i borrow"
+    ],
+    "response": "That depends on your income, credit score, and existing debts. Lenders usually cap it to keep you from borrowing too much \ud83d\udcb0."
+  },
+  {
+    "examples": [
+      "is online loan safe",
+      "is online loan safe?",
+      "can you explain is online loan safe"
+    ],
+    "response": "Many online loans are legit \u2014 just check reviews and licenses. Avoid shady sites asking for upfront fees \ud83d\udea8."
+  },
+  {
+    "examples": [
+      "what is debt consolidation",
+      "what is debt consolidation?",
+      "can you explain what is debt consolidation"
+    ],
+    "response": "It combines multiple debts into one loan. One payment, often lower interest. Great for managing credit card debt \ud83e\uddfe."
+  },
+  {
+    "examples": [
+      "loan vs credit card",
+      "loan vs credit card?",
+      "can you explain loan vs credit card"
+    ],
+    "response": "Loans are better for big purchases & planned repayment. Credit cards are good for flexibility, but interest can be higher \ud83d\udcb3."
+  },
+  {
+    "examples": [
+      "difference between fixed and variable interest",
+      "difference between fixed and variable interest?",
+      "can you explain difference between fixed and variable interest"
+    ],
+    "response": "Fixed stays the same; variable can change with the market \ud83d\udcc8\ud83d\udcc9. Fixed = predictable, variable = risky but potentially cheaper."
+  },
+  {
+    "examples": [
+      "can students get loans",
+      "can students get loans?",
+      "can you explain can students get loans"
+    ],
+    "response": "Yes! Student loans are designed for education and may come with flexible repayment or grace periods after graduation \ud83c\udf93."
+  },
+  {
+    "examples": [
+      "repayment period meaning",
+      "repayment period meaning?",
+      "can you explain repayment period meaning"
+    ],
+    "response": "Repayment period is the time you have to pay the loan back \u2014 e.g. 5 years. Longer = smaller payments but more interest \ud83d\udcc6."
+  },
+  {
+    "examples": [
+      "loan approval time",
+      "loan approval time?",
+      "can you explain loan approval time"
+    ],
+    "response": "It depends! Online loans may take hours, while bank loans can take days or weeks. Tip: keep your documents ready \ud83d\udcc4."
+  },
+  {
+    "examples": [
+      "loan default",
+      "loan default?",
+      "can you explain loan default"
+    ],
+    "response": "Defaulting means failing to repay your loan. It can hurt your credit score and lead to legal action or asset seizure \u274c."
+  },
+  {
+    "examples": [
+      "can i refinance my loan",
+      "can i refinance my loan?",
+      "can you explain can i refinance my loan"
+    ],
+    "response": "Yes! Refinancing replaces your old loan with a new one \u2014 ideally with better terms. It\u2019s like a loan makeover \ud83d\udc85."
+  },
+  {
+    "examples": [
+      "how much can i borrow",
+      "how much can i borrow?",
+      "can you explain how much can i borrow"
+    ],
+    "response": "That depends on your income, credit score, and existing debts. Lenders usually cap it to keep you from borrowing too much \ud83d\udcb0."
+  },
+  {
+    "examples": [
+      "is online loan safe",
+      "is online loan safe?",
+      "can you explain is online loan safe"
+    ],
+    "response": "Many online loans are legit \u2014 just check reviews and licenses. Avoid shady sites asking for upfront fees \ud83d\udea8."
+  },
+  {
+    "examples": [
+      "what is debt consolidation",
+      "what is debt consolidation?",
+      "can you explain what is debt consolidation"
+    ],
+    "response": "It combines multiple debts into one loan. One payment, often lower interest. Great for managing credit card debt \ud83e\uddfe."
+  },
+  {
+    "examples": [
+      "loan vs credit card",
+      "loan vs credit card?",
+      "can you explain loan vs credit card"
+    ],
+    "response": "Loans are better for big purchases & planned repayment. Credit cards are good for flexibility, but interest can be higher \ud83d\udcb3."
+  },
+  {
+    "examples": [
+      "difference between fixed and variable interest",
+      "difference between fixed and variable interest?",
+      "can you explain difference between fixed and variable interest"
+    ],
+    "response": "Fixed stays the same; variable can change with the market \ud83d\udcc8\ud83d\udcc9. Fixed = predictable, variable = risky but potentially cheaper."
+  },
+  {
+    "examples": [
+      "can students get loans",
+      "can students get loans?",
+      "can you explain can students get loans"
+    ],
+    "response": "Yes! Student loans are designed for education and may come with flexible repayment or grace periods after graduation \ud83c\udf93."
+  },
+  {
+    "examples": [
+      "repayment period meaning",
+      "repayment period meaning?",
+      "can you explain repayment period meaning"
+    ],
+    "response": "Repayment period is the time you have to pay the loan back \u2014 e.g. 5 years. Longer = smaller payments but more interest \ud83d\udcc6."
+  },
+  {
+    "examples": [
+      "loan approval time",
+      "loan approval time?",
+      "can you explain loan approval time"
+    ],
+    "response": "It depends! Online loans may take hours, while bank loans can take days or weeks. Tip: keep your documents ready \ud83d\udcc4."
+  },
+  {
+    "examples": [
+      "loan default",
+      "loan default?",
+      "can you explain loan default"
+    ],
+    "response": "Defaulting means failing to repay your loan. It can hurt your credit score and lead to legal action or asset seizure \u274c."
+  },
+  {
+    "examples": [
+      "can i refinance my loan",
+      "can i refinance my loan?",
+      "can you explain can i refinance my loan"
+    ],
+    "response": "Yes! Refinancing replaces your old loan with a new one \u2014 ideally with better terms. It\u2019s like a loan makeover \ud83d\udc85."
+  },
+  {
+    "examples": [
+      "how much can i borrow",
+      "how much can i borrow?",
+      "can you explain how much can i borrow"
+    ],
+    "response": "That depends on your income, credit score, and existing debts. Lenders usually cap it to keep you from borrowing too much \ud83d\udcb0."
+  },
+  {
+    "examples": [
+      "is online loan safe",
+      "is online loan safe?",
+      "can you explain is online loan safe"
+    ],
+    "response": "Many online loans are legit \u2014 just check reviews and licenses. Avoid shady sites asking for upfront fees \ud83d\udea8."
+  },
+  {
+    "examples": [
+      "what is debt consolidation",
+      "what is debt consolidation?",
+      "can you explain what is debt consolidation"
+    ],
+    "response": "It combines multiple debts into one loan. One payment, often lower interest. Great for managing credit card debt \ud83e\uddfe."
+  },
+  {
+    "examples": [
+      "loan vs credit card",
+      "loan vs credit card?",
+      "can you explain loan vs credit card"
+    ],
+    "response": "Loans are better for big purchases & planned repayment. Credit cards are good for flexibility, but interest can be higher \ud83d\udcb3."
+  },
+  {
+    "examples": [
+      "difference between fixed and variable interest",
+      "difference between fixed and variable interest?",
+      "can you explain difference between fixed and variable interest"
+    ],
+    "response": "Fixed stays the same; variable can change with the market \ud83d\udcc8\ud83d\udcc9. Fixed = predictable, variable = risky but potentially cheaper."
+  },
+  {
+    "examples": [
+      "can students get loans",
+      "can students get loans?",
+      "can you explain can students get loans"
+    ],
+    "response": "Yes! Student loans are designed for education and may come with flexible repayment or grace periods after graduation \ud83c\udf93."
+  },
+  {
+    "examples": [
+      "repayment period meaning",
+      "repayment period meaning?",
+      "can you explain repayment period meaning"
+    ],
+    "response": "Repayment period is the time you have to pay the loan back \u2014 e.g. 5 years. Longer = smaller payments but more interest \ud83d\udcc6."
+  },
+  {
+    "examples": [
+      "loan approval time",
+      "loan approval time?",
+      "can you explain loan approval time"
+    ],
+    "response": "It depends! Online loans may take hours, while bank loans can take days or weeks. Tip: keep your documents ready \ud83d\udcc4."
+  },
+  {
+    "examples": [
+      "loan default",
+      "loan default?",
+      "can you explain loan default"
+    ],
+    "response": "Defaulting means failing to repay your loan. It can hurt your credit score and lead to legal action or asset seizure \u274c."
+  },
+  {
+    "examples": [
+      "can i refinance my loan",
+      "can i refinance my loan?",
+      "can you explain can i refinance my loan"
+    ],
+    "response": "Yes! Refinancing replaces your old loan with a new one \u2014 ideally with better terms. It\u2019s like a loan makeover \ud83d\udc85."
+  },
+  {
+    "examples": [
+      "how much can i borrow",
+      "how much can i borrow?",
+      "can you explain how much can i borrow"
+    ],
+    "response": "That depends on your income, credit score, and existing debts. Lenders usually cap it to keep you from borrowing too much \ud83d\udcb0."
+  },
+  {
+    "examples": [
+      "is online loan safe",
+      "is online loan safe?",
+      "can you explain is online loan safe"
+    ],
+    "response": "Many online loans are legit \u2014 just check reviews and licenses. Avoid shady sites asking for upfront fees \ud83d\udea8."
+  },
+  {
+    "examples": [
+      "what is debt consolidation",
+      "what is debt consolidation?",
+      "can you explain what is debt consolidation"
+    ],
+    "response": "It combines multiple debts into one loan. One payment, often lower interest. Great for managing credit card debt \ud83e\uddfe."
+  },
+  {
+    "examples": [
+      "loan vs credit card",
+      "loan vs credit card?",
+      "can you explain loan vs credit card"
+    ],
+    "response": "Loans are better for big purchases & planned repayment. Credit cards are good for flexibility, but interest can be higher \ud83d\udcb3."
+  },
+  {
+    "examples": [
+      "difference between fixed and variable interest",
+      "difference between fixed and variable interest?",
+      "can you explain difference between fixed and variable interest"
+    ],
+    "response": "Fixed stays the same; variable can change with the market \ud83d\udcc8\ud83d\udcc9. Fixed = predictable, variable = risky but potentially cheaper."
+  },
+  {
+    "examples": [
+      "can students get loans",
+      "can students get loans?",
+      "can you explain can students get loans"
+    ],
+    "response": "Yes! Student loans are designed for education and may come with flexible repayment or grace periods after graduation \ud83c\udf93."
+  },
+  {
+    "examples": [
+      "repayment period meaning",
+      "repayment period meaning?",
+      "can you explain repayment period meaning"
+    ],
+    "response": "Repayment period is the time you have to pay the loan back \u2014 e.g. 5 years. Longer = smaller payments but more interest \ud83d\udcc6."
+  },
+  {
+    "examples": [
+      "loan approval time",
+      "loan approval time?",
+      "can you explain loan approval time"
+    ],
+    "response": "It depends! Online loans may take hours, while bank loans can take days or weeks. Tip: keep your documents ready \ud83d\udcc4."
+  },
+  {
+    "examples": [
+      "loan default",
+      "loan default?",
+      "can you explain loan default"
+    ],
+    "response": "Defaulting means failing to repay your loan. It can hurt your credit score and lead to legal action or asset seizure \u274c."
+  },
+  {
+    "examples": [
+      "can i refinance my loan",
+      "can i refinance my loan?",
+      "can you explain can i refinance my loan"
+    ],
+    "response": "Yes! Refinancing replaces your old loan with a new one \u2014 ideally with better terms. It\u2019s like a loan makeover \ud83d\udc85."
+  },
+  {
+    "examples": [
+      "how much can i borrow",
+      "how much can i borrow?",
+      "can you explain how much can i borrow"
+    ],
+    "response": "That depends on your income, credit score, and existing debts. Lenders usually cap it to keep you from borrowing too much \ud83d\udcb0."
+  },
+  {
+    "examples": [
+      "is online loan safe",
+      "is online loan safe?",
+      "can you explain is online loan safe"
+    ],
+    "response": "Many online loans are legit \u2014 just check reviews and licenses. Avoid shady sites asking for upfront fees \ud83d\udea8."
+  },
+  {
+    "examples": [
+      "what is debt consolidation",
+      "what is debt consolidation?",
+      "can you explain what is debt consolidation"
+    ],
+    "response": "It combines multiple debts into one loan. One payment, often lower interest. Great for managing credit card debt \ud83e\uddfe."
+  },
+  {
+    "examples": [
+      "loan vs credit card",
+      "loan vs credit card?",
+      "can you explain loan vs credit card"
+    ],
+    "response": "Loans are better for big purchases & planned repayment. Credit cards are good for flexibility, but interest can be higher \ud83d\udcb3."
+  },
+  {
+    "examples": [
+      "difference between fixed and variable interest",
+      "difference between fixed and variable interest?",
+      "can you explain difference between fixed and variable interest"
+    ],
+    "response": "Fixed stays the same; variable can change with the market \ud83d\udcc8\ud83d\udcc9. Fixed = predictable, variable = risky but potentially cheaper."
+  },
+  {
+    "examples": [
+      "can students get loans",
+      "can students get loans?",
+      "can you explain can students get loans"
+    ],
+    "response": "Yes! Student loans are designed for education and may come with flexible repayment or grace periods after graduation \ud83c\udf93."
+  },
+  {
+    "examples": [
+      "repayment period meaning",
+      "repayment period meaning?",
+      "can you explain repayment period meaning"
+    ],
+    "response": "Repayment period is the time you have to pay the loan back \u2014 e.g. 5 years. Longer = smaller payments but more interest \ud83d\udcc6."
+  },
+  {
+    "examples": [
+      "loan approval time",
+      "loan approval time?",
+      "can you explain loan approval time"
+    ],
+    "response": "It depends! Online loans may take hours, while bank loans can take days or weeks. Tip: keep your documents ready \ud83d\udcc4."
+  },
+  {
+    "examples": [
+      "loan default",
+      "loan default?",
+      "can you explain loan default"
+    ],
+    "response": "Defaulting means failing to repay your loan. It can hurt your credit score and lead to legal action or asset seizure \u274c."
+  },
+  {
+    "examples": [
+      "can i refinance my loan",
+      "can i refinance my loan?",
+      "can you explain can i refinance my loan"
+    ],
+    "response": "Yes! Refinancing replaces your old loan with a new one \u2014 ideally with better terms. It\u2019s like a loan makeover \ud83d\udc85."
+  },
+  {
+    "examples": [
+      "how much can i borrow",
+      "how much can i borrow?",
+      "can you explain how much can i borrow"
+    ],
+    "response": "That depends on your income, credit score, and existing debts. Lenders usually cap it to keep you from borrowing too much \ud83d\udcb0."
+  },
+  {
+    "examples": [
+      "is online loan safe",
+      "is online loan safe?",
+      "can you explain is online loan safe"
+    ],
+    "response": "Many online loans are legit \u2014 just check reviews and licenses. Avoid shady sites asking for upfront fees \ud83d\udea8."
+  },
+  {
+    "examples": [
+      "what is debt consolidation",
+      "what is debt consolidation?",
+      "can you explain what is debt consolidation"
+    ],
+    "response": "It combines multiple debts into one loan. One payment, often lower interest. Great for managing credit card debt \ud83e\uddfe."
+  },
+  {
+    "examples": [
+      "loan vs credit card",
+      "loan vs credit card?",
+      "can you explain loan vs credit card"
+    ],
+    "response": "Loans are better for big purchases & planned repayment. Credit cards are good for flexibility, but interest can be higher \ud83d\udcb3."
+  },
+  {
+    "examples": [
+      "difference between fixed and variable interest",
+      "difference between fixed and variable interest?",
+      "can you explain difference between fixed and variable interest"
+    ],
+    "response": "Fixed stays the same; variable can change with the market \ud83d\udcc8\ud83d\udcc9. Fixed = predictable, variable = risky but potentially cheaper."
+  },
+  {
+    "examples": [
+      "can students get loans",
+      "can students get loans?",
+      "can you explain can students get loans"
+    ],
+    "response": "Yes! Student loans are designed for education and may come with flexible repayment or grace periods after graduation \ud83c\udf93."
+  },
+  {
+    "examples": [
+      "repayment period meaning",
+      "repayment period meaning?",
+      "can you explain repayment period meaning"
+    ],
+    "response": "Repayment period is the time you have to pay the loan back \u2014 e.g. 5 years. Longer = smaller payments but more interest \ud83d\udcc6."
+  },
+  {
+    "examples": [
+      "loan approval time",
+      "loan approval time?",
+      "can you explain loan approval time"
+    ],
+    "response": "It depends! Online loans may take hours, while bank loans can take days or weeks. Tip: keep your documents ready \ud83d\udcc4."
+  },
+  {
+    "examples": [
+      "loan default",
+      "loan default?",
+      "can you explain loan default"
+    ],
+    "response": "Defaulting means failing to repay your loan. It can hurt your credit score and lead to legal action or asset seizure \u274c."
+  },
+  {
+    "examples": [
+      "can i refinance my loan",
+      "can i refinance my loan?",
+      "can you explain can i refinance my loan"
+    ],
+    "response": "Yes! Refinancing replaces your old loan with a new one \u2014 ideally with better terms. It\u2019s like a loan makeover \ud83d\udc85."
+  },
+  {
+    "examples": [
+      "how much can i borrow",
+      "how much can i borrow?",
+      "can you explain how much can i borrow"
+    ],
+    "response": "That depends on your income, credit score, and existing debts. Lenders usually cap it to keep you from borrowing too much \ud83d\udcb0."
+  },
+  {
+    "examples": [
+      "is online loan safe",
+      "is online loan safe?",
+      "can you explain is online loan safe"
+    ],
+    "response": "Many online loans are legit \u2014 just check reviews and licenses. Avoid shady sites asking for upfront fees \ud83d\udea8."
+  },
+  {
+    "examples": [
+      "what is debt consolidation",
+      "what is debt consolidation?",
+      "can you explain what is debt consolidation"
+    ],
+    "response": "It combines multiple debts into one loan. One payment, often lower interest. Great for managing credit card debt \ud83e\uddfe."
+  },
+  {
+    "examples": [
+      "loan vs credit card",
+      "loan vs credit card?",
+      "can you explain loan vs credit card"
+    ],
+    "response": "Loans are better for big purchases & planned repayment. Credit cards are good for flexibility, but interest can be higher \ud83d\udcb3."
   }
 ]
