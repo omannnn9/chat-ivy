@@ -1,19 +1,20 @@
 import os
 import json
+import re
 from flask import Flask, render_template, request, jsonify
 import openai
 from dotenv import load_dotenv
 
-# Load .env variables
+# Load .env vars
 load_dotenv()
 
 app = Flask(__name__)
 
-# Load offline fallback knowledge base
+# Load offline knowledge base
 with open("ivy_knowledge_base_genz_expanded.json", "r", encoding="utf-8") as f:
     knowledge_base = json.load(f)
 
-# Set OpenRouter API key
+# Load API key from environment
 API_KEY = os.getenv("OPENROUTER_API_KEY")
 USE_AI = bool(API_KEY)
 
@@ -22,7 +23,13 @@ if USE_AI:
     openai.api_key = API_KEY
     openai.api_base = "https://openrouter.ai/api/v1"
 else:
-    print("⚠️ No AI API key found. Using offline mode")
+    print("⚠️ No API key found. Using offline mode.")
+
+# Utility: clean and normalize input
+def normalize(text):
+    text = text.lower()
+    text = re.sub(r'[^\w\s]', '', text)  # Remove punctuation
+    return text.strip()
 
 @app.route("/")
 def home():
@@ -30,7 +37,8 @@ def home():
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    user_input = request.json.get("message", "").strip().lower()
+    raw_input = request.json.get("message", "")
+    user_input = normalize(raw_input)
 
     # ✅ Try AI first
     if USE_AI:
@@ -38,8 +46,8 @@ def chat():
             response = openai.ChatCompletion.create(
                 model="openrouter/auto",
                 messages=[
-                    {"role": "system", "content": "You are Ivy, a Gen Z-style financial expert who replies casually, with emojis and clarity, about anything related to loans."},
-                    {"role": "user", "content": user_input}
+                    {"role": "system", "content": "You are Ivy, a Gen Z-style financial expert who explains loans with emojis and friendly energy."},
+                    {"role": "user", "content": raw_input}
                 ],
                 temperature=0.85,
             )
@@ -47,13 +55,12 @@ def chat():
         except Exception as e:
             print("⚠️ AI error:", e)
 
-    # 🔍 Offline fallback: fuzzy match
+    # 🔍 Offline fallback
     for item in knowledge_base:
-        stored_q = item.get("question", "").lower()
-        if stored_q in user_input:
+        stored_question = normalize(item.get("question", ""))
+        if stored_question in user_input:
             return jsonify({"reply": item.get("answer")})
 
-    # ❌ No match found
     return jsonify({
         "reply": "Oops 🥲 I couldn’t reach the AI cloud, but I’m still here to help with offline stuff!"
     })
