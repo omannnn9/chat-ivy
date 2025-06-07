@@ -2,16 +2,13 @@ import os
 import json
 import requests
 from flask import Flask, request, jsonify, render_template
-from dotenv import load_dotenv
-
-load_dotenv()
 
 app = Flask(__name__)
 
-# Load OpenRouter API key
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+# Try loading the key directly from environment
+OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 
-# Load offline knowledge base
+# Load offline JSON knowledge base
 with open("ivy_knowledge_base_genz_expanded.json", "r", encoding="utf-8") as f:
     knowledge_base = json.load(f)
 
@@ -24,7 +21,7 @@ def chat():
     data = request.get_json()
     user_message = data.get("message", "").strip().lower()
 
-    # 🔁 Try calling OpenRouter first
+    # ✅ Use OpenRouter if key exists
     if OPENROUTER_API_KEY:
         try:
             headers = {
@@ -35,7 +32,7 @@ def chat():
             payload = {
                 "model": "openai/gpt-3.5-turbo",
                 "messages": [
-                    {"role": "system", "content": "You are Ivy, a helpful Gen Z financial assistant."},
+                    {"role": "system", "content": "You are Ivy, a friendly Gen Z financial assistant."},
                     {"role": "user", "content": user_message}
                 ]
             }
@@ -53,7 +50,6 @@ def chat():
             if example.lower() in user_message:
                 return jsonify({"reply": entry["response"]})
 
-    # Final fallback message
     return jsonify({
         "reply": "Oops 🥲 I couldn’t reach the AI cloud, but I’m still here to help with offline stuff!"
     })
