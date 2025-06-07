@@ -12,7 +12,7 @@ app = Flask(__name__)
 with open("ivy_knowledge_base_genz_expanded.json", "r", encoding="utf-8") as f:
     knowledge_base = json.load(f)
 
-# Load OpenAI/OpenRouter API key
+# Load API key from environment variable
 API_KEY = os.getenv("OPENROUTER_API_KEY")
 USE_AI = API_KEY is not None
 
@@ -34,7 +34,7 @@ def chat():
     if not user_input:
         return jsonify({"reply": "Hmm, could you say that again? 🤔"})
 
-    # Try AI response if key is present
+    # Try AI cloud if available
     if USE_AI:
         try:
             response = openai.ChatCompletion.create(
@@ -47,15 +47,17 @@ def chat():
             )
             return jsonify({"reply": response["choices"][0]["message"]["content"]})
         except Exception as e:
-            print("⚠️ AI response error:", e)
+            print("⚠️ AI error:", e)
 
-    # Fallback to offline responses
-    lower_input = user_input.lower()
+    # Offline fallback using question matching
+    user_input_lower = user_input.lower()
     for item in knowledge_base:
-        for q in item.get("questions", []):
-            if q.lower() in lower_input:
-                return jsonify({"reply": item.get("answer", "Hmm... I’ll get back to you on that! 😅")})
+        if "questions" in item and isinstance(item["questions"], list):
+            for q in item["questions"]:
+                if q.lower() in user_input_lower:
+                    return jsonify({"reply": item.get("answer", "Hmm... I’ll get back to you on that! 😅")})
 
+    # If nothing matches
     return jsonify({"reply": "Oops 🥲 I couldn’t reach the AI cloud, but I’m still here to help with offline stuff!"})
 
 if __name__ == "__main__":
