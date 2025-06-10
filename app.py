@@ -61,7 +61,10 @@ def chat():
             return jsonify({"reply": item.get("answer")})
 
     return jsonify({
-        "reply": "Oops 🥲 I couldn’t reach the AI cloud, but I’m still here to help with offline stuff!"
+        "reply": "😕 Hmm, I don’t have an answer for that right now.
+Want to see what I can help with? 👉 Check out What Can I Ask Ivy? on the left!
+I’m here to help with all things reagrding loans! 💸📄
+" 
     })
 
 @app.route("/help")
