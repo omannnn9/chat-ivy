@@ -26,7 +26,9 @@ form.addEventListener("submit", async (e) => {
   } catch (err) {
     removeTyping();
     console.error("❌ Chat error:", err);
-    addMessage("ivy", "Oops 🥲 I couldn’t reach the AI cloud, but I’m still here to help with offline stuff!");
+    addMessage("ivy", "😕 Hmm, I don’t have an answer for that right now.
+Want to see what I can help with? 👉 Check out What Can I Ask Ivy? on the left!
+I’m here to help with all things reagrding loans! 💸📄");
   }
 });
 
