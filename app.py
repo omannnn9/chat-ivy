@@ -56,14 +56,15 @@ def chat():
 
     # Offline fallback
     for item in knowledge_base:
-        stored_question = normalize(item.get("question", ""))
-        if stored_question and stored_question in user_input:
-            return jsonify({"reply": item.get("answer")})
+    stored_question = normalize(item.get("question", ""))
+    if stored_question and stored_question in user_input:
+        return jsonify({"reply": item.get("answer")})
 
-    return jsonify({"reply":"😕 Hmm, I don’t have an answer for that right now.
-Want to see what I can help with? 👉 Check out What Can I Ask Ivy? on the left!
-I’m here to help with all things reagrding loans! 💸📄"})
-
+return jsonify({
+    "reply": "😕 Hmm, I don’t have an answer for that right now.\n"
+             "Want to see what I can help with? 👉 Check out *What Can I Ask Ivy?* on the left!\n"
+             "I’m here to help with all things regarding loans! 💸📄"
+})
 @app.route("/help")
 def help():
     categories = {
