@@ -65,6 +65,11 @@ return jsonify({
              "Want to see what I can help with? 👉 Check out *What Can I Ask Ivy?* on the left!\n"
              "I’m here to help with all things regarding loans! 💸📄"
 })
+
+
+
+
+
 @app.route("/help")
 def help():
     categories = {
