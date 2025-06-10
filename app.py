@@ -1,7 +1,7 @@
+
 import os
 import json
 import re
-import difflib
 from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
 import openai
@@ -14,7 +14,7 @@ app = Flask(__name__)
 with open("ivy_knowledge_base_genz_expanded.json", "r", encoding="utf-8") as f:
     knowledge_base = json.load(f)
 
-# API Key setup
+# OpenRouter API Key
 API_KEY = os.getenv("OPENROUTER_API_KEY")
 USE_AI = bool(API_KEY)
 
@@ -26,7 +26,7 @@ else:
     print("⚠️ No API key found. Using offline mode.")
 
 def normalize(text):
-    return re.sub(r"[^\w\s]", "", text.lower()).strip()
+    return re.sub(r'[^\w\s]', '', text.lower()).strip()
 
 @app.route("/")
 def index():
@@ -37,7 +37,7 @@ def chat():
     raw_input = request.json.get("message", "")
     user_input = normalize(raw_input)
 
-    # 🧠 AI Mode
+    # If AI is available, use OpenRouter API
     if USE_AI:
         try:
             response = openai.ChatCompletion.create(
@@ -55,23 +55,14 @@ def chat():
         except Exception as e:
             print("⚠️ AI error:", e)
 
-    # 🧠 Offline fallback using fuzzy match
-    best_match = None
-    highest_score = 0
+    # Offline fallback
     for item in knowledge_base:
         stored_question = normalize(item.get("question", ""))
-        score = difflib.SequenceMatcher(None, stored_question, user_input).ratio()
-        if score > highest_score:
-            highest_score = score
-            best_match = item
-
-    if best_match and highest_score > 0.6:  # You can adjust this threshold
-        return jsonify({"reply": best_match.get("answer")})
+        if stored_question and stored_question in user_input:
+            return jsonify({"reply": item.get("answer")})
 
     return jsonify({
-        "reply": "😕 Hmm, I don’t have an answer for that right now.\n"
-                 "Want to see what I can help with? 👉 Check out *What Can I Ask Ivy?* on the left!\n"
-                 "I’m here to help with all things regarding loans! 💸📄"
+        "reply": "Oops 🥲 I couldn’t reach the AI cloud, but I’m still here to help with offline stuff!"
     })
 
 @app.route("/help")
