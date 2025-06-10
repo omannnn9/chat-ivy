@@ -1,6 +1,7 @@
 import os
 import json
 import re
+import difflib
 from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
 import openai
@@ -13,7 +14,7 @@ app = Flask(__name__)
 with open("ivy_knowledge_base_genz_expanded.json", "r", encoding="utf-8") as f:
     knowledge_base = json.load(f)
 
-# OpenRouter API Key
+# API Key setup
 API_KEY = os.getenv("OPENROUTER_API_KEY")
 USE_AI = bool(API_KEY)
 
@@ -25,7 +26,7 @@ else:
     print("⚠️ No API key found. Using offline mode.")
 
 def normalize(text):
-    return re.sub(r'[^\w\s]', '', text.lower()).strip()
+    return re.sub(r"[^\w\s]", "", text.lower()).strip()
 
 @app.route("/")
 def index():
@@ -36,7 +37,7 @@ def chat():
     raw_input = request.json.get("message", "")
     user_input = normalize(raw_input)
 
-    # If AI is available, use OpenRouter API
+    # 🧠 AI Mode
     if USE_AI:
         try:
             response = openai.ChatCompletion.create(
@@ -54,11 +55,18 @@ def chat():
         except Exception as e:
             print("⚠️ AI error:", e)
 
-    # Offline fallback
+    # 🧠 Offline fallback using fuzzy match
+    best_match = None
+    highest_score = 0
     for item in knowledge_base:
         stored_question = normalize(item.get("question", ""))
-        if stored_question and stored_question in user_input:
-            return jsonify({"reply": item.get("answer")})
+        score = difflib.SequenceMatcher(None, stored_question, user_input).ratio()
+        if score > highest_score:
+            highest_score = score
+            best_match = item
+
+    if best_match and highest_score > 0.6:  # You can adjust this threshold
+        return jsonify({"reply": best_match.get("answer")})
 
     return jsonify({
         "reply": "😕 Hmm, I don’t have an answer for that right now.\n"
