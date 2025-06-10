@@ -61,11 +61,9 @@ def chat():
             return jsonify({"reply": item.get("answer")})
 
     return jsonify({
-        "reply": "😕 Hmm, I don’t have an answer for that right now.
+        "reply": ({"😕 Hmm, I don’t have an answer for that right now.
 Want to see what I can help with? 👉 Check out What Can I Ask Ivy? on the left!
-I’m here to help with all things reagrding loans! 💸📄
-" 
-    })
+I’m here to help with all things reagrding loans! 💸📄"})
 
 @app.route("/help")
 def help():
